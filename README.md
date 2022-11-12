@@ -7,5 +7,7 @@ A project template for cpp projects
 [x] Support Google test [google test](https://github.com/google/googletest/)
 
 ```
-git clone --recusive ...
+git clone --recusive git@github.com:IvoBrandao/cpp-cmake-template.git
+sudo chmod +x build.sh
+./build.sh
 ```
