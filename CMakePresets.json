@@ -1,0 +1,43 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 23,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "debug",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "release",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "arm-none-eabi-gcc",
+            "displayName": "GCC 11.2.0 arm-none-eabi-gcc",
+            "description": "Using compilers: arm-none-eabi-gcc 11.2.0, arm-none-eabi-g++ 11.2.0",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "generator": "Unix Makefiles"
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "debug",
+            "hidden": true,
+            "configurePreset": "debug"
+        },
+        {
+            "name": "release",
+            "hidden": true,
+            "configurePreset": "release"
+        }
+    ]
+}

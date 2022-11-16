@@ -1,0 +1,7 @@
+set(ARM_NONE_EABI_GCC_TOOLCHAIN_PATH arm-none-eabi-gcc CACHE PATH "Path to arm-none-eabi-gcc toolchain")
+set(ARM_ARCH_CPU "cortex-m4" CACHE STRING "ARM architecture CPU")
+set(ARM_ARCH_ARM_MODE "thumb" CACHE STRING "ARM architecture ARM mode")
+set(ARM_ARCH_FPU "fpv5-d16" CACHE STRING "ARM architecture FPU")
+set(ARM_ARCH_FLOAT_ABI "hard" CACHE STRING "ARM architecture float ABI")
+SET(ARM_COMPILER_ABI arm-none-eabi- CACHE STRING "ARM compiler ABI" )
+SET(ARM_LINKER_SCRIPTH_PATH ${CMAKE_CURRENT_SOURCE_DIR}/memory-layout.ld CACHE STRING "ARM linker script path" )
