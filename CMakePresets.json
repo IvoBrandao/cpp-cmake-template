@@ -1,11 +1,12 @@
 {
-    "version": 6,
+    "version": 5,
     "cmakeMinimumRequired": {
         "major": 3,
         "minor": 23,
         "patch": 0
     },
-    "configurePresets": [
+    "configurePresets": 
+    [
         {
             "name": "debug",
             "hidden": true,
@@ -21,50 +22,36 @@
             }
         },
         {
-            "name": "arm-none-eabi-gcc",
-            "hidden": true,
-            "displayName": "GCC 11.2.0 arm-none-eabi-gcc",
-            "description": "Using compilers: arm-none-eabi-gcc 11.2.0, arm-none-eabi-g++ 11.2.0",
-            "binaryDir": "${sourceDir}/out/build/${presetName}",
-            "generator": "Unix Makefiles"
+            "name": "x64-debug",
+            "inherits": "debug",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": 
+            {
+                "HOST_ARCHITECTURE" : "x86-64",
+                "HOST_PLATFORM" : "linux",
+                "TARGET_ARCHITECTURE" : "x86-64",
+                "TARGET_PLATFORM" : "none",
+                "TARGET_TOOLCHAIN" : "x86-64-linux-gcc",
+                "CMAKE_CXX_COMPILER": "g++-12",
+                "CMAKE_C_COMPILER": "gcc-12"
+            }
         },
         {
             "name": "arm-none-eabi-gcc-debug",
-            "displayName": "GCC 11.2.0 arm-none-eabi-gcc Debug",
-            "inherits": ["arm-none-eabi-gcc",
-                         "debug"],
-            "cacheVariables": {
-                "HOST_ARCHITECTURE" : "x86-64",
-                "HOST_PLATFORM" : "linux",
-                "TARGET_ARCHITECTURE" : "arm-cm7",
+            "inherits": "debug",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": 
+            {
+                "TARGET_ARCHITECTURE" : "arm-cm7fp",
                 "TARGET_PLATFORM" : "none",
-                "TARGET_TOOLCHAIN" : "arm-none-eabi-gcc"
+                "TARGET_TOOLCHAIN" : "arm-none-eabi-gcc",
+                "CMAKE_CXX_COMPILER": "arm-none-eabi-g++",
+                "CMAKE_C_COMPILER": "arm-none-eabi-gcc",
+                "CMAKE_FORCE_CXX_COMPILER": "arm-none-eabi-g++",
+                "CMAKE_FORCE_C_COMPILER": "arm-none-eabi-gcc"
             }
-        },
-        {
-            "name": "arm-none-eabi-gcc-release",
-            "displayName": "GCC 11.2.0 arm-none-eabi-gcc Release",
-            "inherits": "arm-none-eabi-gcc",
-            "inheritsCacheVariables": [
-                "CMAKE_BUILD_TYPE"
-            ],
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release"
-            }
-        }
-
-
-    ],
-    "buildPresets": [
-        {
-            "name": "debug",
-            "hidden": true,
-            "configurePreset": "debug"
-        },
-        {
-            "name": "release",
-            "hidden": true,
-            "configurePreset": "release"
         }
     ]
 }
