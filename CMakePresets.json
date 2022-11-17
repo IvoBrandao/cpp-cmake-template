@@ -22,11 +22,38 @@
         },
         {
             "name": "arm-none-eabi-gcc",
+            "hidden": true,
             "displayName": "GCC 11.2.0 arm-none-eabi-gcc",
             "description": "Using compilers: arm-none-eabi-gcc 11.2.0, arm-none-eabi-g++ 11.2.0",
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "generator": "Unix Makefiles"
+        },
+        {
+            "name": "arm-none-eabi-gcc-debug",
+            "displayName": "GCC 11.2.0 arm-none-eabi-gcc Debug",
+            "inherits": ["arm-none-eabi-gcc",
+                         "debug"],
+            "cacheVariables": {
+                "HOST_ARCHITECTURE" : "x86-64",
+                "HOST_PLATFORM" : "linux",
+                "TARGET_ARCHITECTURE" : "arm-cm7",
+                "TARGET_PLATFORM" : "none",
+                "TARGET_TOOLCHAIN" : "arm-none-eabi-gcc"
+            }
+        },
+        {
+            "name": "arm-none-eabi-gcc-release",
+            "displayName": "GCC 11.2.0 arm-none-eabi-gcc Release",
+            "inherits": "arm-none-eabi-gcc",
+            "inheritsCacheVariables": [
+                "CMAKE_BUILD_TYPE"
+            ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
         }
+
+
     ],
     "buildPresets": [
         {
