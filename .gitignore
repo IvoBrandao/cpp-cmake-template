@@ -32,5 +32,4 @@
 *.app
 
 # External directory
-external
 build
