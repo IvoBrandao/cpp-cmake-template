@@ -27,9 +27,10 @@ add_subdirectory(external/googletest)
 
 
 
-add_executable(ExampleProject src/main.cpp)
-target_include_directories(ExampleProject 
+add_executable(ExampleApp src/main.cpp)
+target_include_directories(ExampleApp 
     PUBLIC     
     ${CMAKE_CURRENT_LIST_DIR}/include
     )
-target_link_libraries(ExampleProject  submodule)
+target_link_libraries(ExampleApp  submodule)
+

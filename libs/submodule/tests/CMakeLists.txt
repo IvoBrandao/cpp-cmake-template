@@ -5,14 +5,14 @@ set (LIBRARIES submodule)
 
 enable_testing()
 
-file(GLOB_RECURSE TEST_SOURCES LIST_DIRECTORIES false test_*.h test_*.cpp)
+file(GLOB_RECURSE TEST_SOURCES LIST_DIRECTORIES false tests_*.hpp tests_*.cpp)
 
 foreach(_source IN ITEMS ${TEST_SOURCES})
 
     # get filename without extension from _source variable
     get_filename_component(_name ${_source} NAME_WE)
 
-    set(TEST_NAME ut_${_name})
+    set(TEST_NAME ${_name})
 
     # add test executable
     add_executable(${TEST_NAME} ${_source})

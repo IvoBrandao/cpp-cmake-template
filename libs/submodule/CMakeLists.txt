@@ -1,5 +1,3 @@
-add_subdirectory(docs)
-add_subdirectory(tests)
 
 
 add_library(submodule STATIC)
@@ -10,7 +8,10 @@ target_include_directories(submodule
 
 target_sources(submodule 
     PRIVATE 
-        ${CMAKE_CURRENT_LIST_DIR}/src/submodule.cpp)
+        ${CMAKE_CURRENT_LIST_DIR}/src/ClassName.cpp)
 
 #add_dependencies(submodule library_name )
 #target_link_libraries( submodule library_name)
+
+add_subdirectory(docs)
+add_subdirectory(tests)

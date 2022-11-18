@@ -1,5 +1,4 @@
 
-rm -rf build
 mkdir -p build
 echo "available presets: "
 cmake --list-presets

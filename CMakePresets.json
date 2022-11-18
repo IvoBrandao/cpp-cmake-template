@@ -5,8 +5,7 @@
         "minor": 23,
         "patch": 0
     },
-    "configurePresets": 
-    [
+    "configurePresets": [
         {
             "name": "debug",
             "hidden": true,
@@ -26,13 +25,12 @@
             "inherits": "debug",
             "generator": "Unix Makefiles",
             "binaryDir": "${sourceDir}/build/${presetName}",
-            "cacheVariables": 
-            {
-                "HOST_ARCHITECTURE" : "x86-64",
-                "HOST_PLATFORM" : "linux",
-                "TARGET_ARCHITECTURE" : "x86-64",
-                "TARGET_PLATFORM" : "none",
-                "TARGET_TOOLCHAIN" : "x86-64-linux-gcc",
+            "cacheVariables": {
+                "HOST_ARCHITECTURE": "x86-64",
+                "HOST_PLATFORM": "linux",
+                "TARGET_ARCHITECTURE": "x86-64",
+                "TARGET_PLATFORM": "none",
+                "TARGET_TOOLCHAIN": "x86-64-linux-gcc",
                 "CMAKE_CXX_COMPILER": "g++-12",
                 "CMAKE_C_COMPILER": "gcc-12"
             }
@@ -42,16 +40,32 @@
             "inherits": "debug",
             "generator": "Unix Makefiles",
             "binaryDir": "${sourceDir}/build/${presetName}",
-            "cacheVariables": 
-            {
-                "TARGET_ARCHITECTURE" : "arm-cm7fp",
-                "TARGET_PLATFORM" : "none",
-                "TARGET_TOOLCHAIN" : "arm-none-eabi-gcc",
+            "cacheVariables": {
+                "TARGET_ARCHITECTURE": "arm-cm7fp",
+                "TARGET_PLATFORM": "none",
+                "TARGET_TOOLCHAIN": "arm-none-eabi-gcc",
                 "CMAKE_CXX_COMPILER": "arm-none-eabi-g++",
                 "CMAKE_C_COMPILER": "arm-none-eabi-gcc",
                 "CMAKE_FORCE_CXX_COMPILER": "arm-none-eabi-g++",
                 "CMAKE_FORCE_C_COMPILER": "arm-none-eabi-gcc"
             }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "Appx64",
+            "targets": [
+                "ExampleApp"
+            ],
+            "configurePreset": "x64-debug"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "UnitTestAppx64",
+            "description": "",
+            "displayName": "",
+            "configurePreset": "x64-debug"
         }
     ]
 }
