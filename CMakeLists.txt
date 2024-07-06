@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.22)
 
 
 SET(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/bin" CACHE INTERNAL "Prefix added to install directories" FORCE)
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_LIST_DIR}/tools/cmake/modules")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_LIST_DIR}/cmake/modules")
 
 
 project(ExampleProject C CXX ASM)
