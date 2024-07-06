@@ -1,5 +1,5 @@
 {
-    "version": 5,
+    "version": 6,
     "cmakeMinimumRequired": {
         "major": 3,
         "minor": 23,
@@ -10,62 +10,159 @@
             "name": "debug",
             "hidden": true,
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug"
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
             }
         },
         {
             "name": "release",
             "hidden": true,
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release"
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
             }
         },
         {
-            "name": "x64-debug",
-            "inherits": "debug",
-            "generator": "Unix Makefiles",
-            "binaryDir": "${sourceDir}/build/${presetName}",
+            "name": "arm-cm7fp-gcc",
+            "hidden": true,
+            "cacheVariables": {
+                "TARGET_ARCHITECTURE_TYPE": "arm",
+                "TARGET_PLATFORM": "baremetal",
+                "TARGET_ARCHITECTURE": "arm-cm7fp",
+                "TARGET_TOOLCHAIN": "arm-none-eabi-gcc",
+                "CMAKE_C_COMPILER_WORKS": "TRUE",
+                "CMAKE_CXX_COMPILER_WORKS": "TRUE",
+                "CMAKE_CXX_COMPILER": "arm-none-eabi-g++",
+                "CMAKE_C_COMPILER": "arm-none-eabi-gcc"
+            }
+        },
+        {
+            "name": "arm-cm4fp-gcc",
+            "hidden": true,
+            "cacheVariables": {
+                "TARGET_ARCHITECTURE_TYPE": "arm",
+                "TARGET_PLATFORM": "stm32f429",
+                "TARGET_ARCHITECTURE": "arm-cm4fp",
+                "TARGET_TOOLCHAIN": "arm-none-eabi-gcc",
+                "CMAKE_C_COMPILER_WORKS": "TRUE",
+                "CMAKE_CXX_COMPILER_WORKS": "TRUE",
+                "CMAKE_CXX_COMPILER": "arm-none-eabi-g++",
+                "CMAKE_C_COMPILER": "arm-none-eabi-gcc"
+            }
+        },
+        {
+            "name": "x86-64-linux-gcc",
+            "hidden": true,
             "cacheVariables": {
                 "HOST_ARCHITECTURE": "x86-64",
                 "HOST_PLATFORM": "linux",
+                "TARGET_ARCHITECTURE_TYPE": "x86-64",
                 "TARGET_ARCHITECTURE": "x86-64",
                 "TARGET_PLATFORM": "none",
                 "TARGET_TOOLCHAIN": "x86-64-linux-gcc",
-                "CMAKE_CXX_COMPILER": "g++-12",
-                "CMAKE_C_COMPILER": "gcc-12"
+                "CMAKE_CXX_COMPILER": "g++",
+                "CMAKE_C_COMPILER": "gcc"
             }
         },
         {
-            "name": "arm-none-eabi-gcc-debug",
-            "inherits": "debug",
+            "name": "x86-64-linux-gcc-debug",
+            "inherits": [
+                "debug",
+                "x86-64-linux-gcc"
+            ],
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/${presetName}"
+        },
+        {
+            "name": "x86-64-linux-gcc-release",
+            "inherits": [
+                "release",
+                "x86-64-linux-gcc"
+            ],
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/${presetName}"
+        },
+        {
+            "name": "arm-cm7fp-gcc-debug",
+            "inherits": [
+                "debug",
+                "arm-cm7fp-gcc"
+            ],
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/${presetName}"
+        },
+        {
+            "name": "arm-cm7fp-gcc-release",
             "generator": "Unix Makefiles",
             "binaryDir": "${sourceDir}/build/${presetName}",
-            "cacheVariables": {
-                "TARGET_ARCHITECTURE": "arm-cm7fp",
-                "TARGET_PLATFORM": "none",
-                "TARGET_TOOLCHAIN": "arm-none-eabi-gcc",
-                "CMAKE_CXX_COMPILER": "arm-none-eabi-g++",
-                "CMAKE_C_COMPILER": "arm-none-eabi-gcc",
-                "CMAKE_FORCE_CXX_COMPILER": "arm-none-eabi-g++",
-                "CMAKE_FORCE_C_COMPILER": "arm-none-eabi-gcc"
-            }
+            "inherits": [
+                "release",
+                "arm-cm7fp-gcc"
+            ]
+        },
+        {
+            "name": "arm-cm4fp-gcc-debug",
+            "inherits": [
+                "debug",
+                "arm-cm4fp-gcc"
+            ],
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/${presetName}"
+        },
+        {
+            "name": "arm-cm4fp-gcc-release",
+            "inherits": [
+                "release",
+                "arm-cm4fp-gcc"
+            ],
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/${presetName}"
         }
     ],
     "buildPresets": [
         {
-            "name": "Appx64",
+            "name": "app-x64-linux-debug",
             "targets": [
                 "ExampleApp"
             ],
-            "configurePreset": "x64-debug"
+            "configurePreset": "x86-64-linux-gcc-debug"
+        },
+        {
+            "name": "app-x64-linux-release",
+            "targets": [
+                "ExampleApp"
+            ],
+            "configurePreset": "x86-64-linux-gcc-release"
+        },
+        {
+            "name": "app-arm-cm7fp-debug",
+            "targets": [
+                "ExampleApp"
+            ],
+            "configurePreset": "arm-cm7fp-gcc-debug"
+        },
+        {
+            "name": "app-arm-cm7fp-release",
+            "targets": [
+                "ExampleApp"
+            ],
+            "configurePreset": "arm-cm7fp-gcc-release"
+        },
+        {
+            "name": "app-arm-cm4fp-debug",
+            "targets": [
+                "ExampleApp"
+            ],
+            "configurePreset": "arm-cm4fp-gcc-debug"
+        },
+        {
+            "name": "app-arm-cm4fp-release",
+            "targets": [
+                "ExampleApp"
+            ],
+            "configurePreset": "arm-cm4fp-gcc-release"
         }
     ],
-    "testPresets": [
-        {
-            "name": "UnitTestAppx64",
-            "description": "",
-            "displayName": "",
-            "configurePreset": "x64-debug"
-        }
-    ]
+    "testPresets": [],
+    "workflowPresets": []
 }
